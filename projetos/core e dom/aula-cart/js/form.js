@@ -9,11 +9,15 @@ function validarFormulario(){
     
     console.log( validarEndereco() )
 
-    if(validarEndereco() && validarContato())
+    if(validarEndereco() && validarContato()){
         console.log('validação está ok.. pode prosseguir');
-    else 
+        console.log(dadosCliente);
+    }    
+    else {
         console.log('validação não passou.. preencher todos os campos');
-}
+    }
+
+}  
 
 function validarEndereco(){
     //gerar objeto endereco baseado nos dados do formulario
@@ -40,14 +44,43 @@ function validarEndereco(){
         return false;
     } else {//validação ok
         //grava o objeto endereço no objeto dadosCliente
-        dadosCliente.endereco = objEndereco;
+       dadosCliente.endereco = objEndereco;
         //retorno da função
         return true;
     }
 
 }
 
-function validarContato( _objContato ){
+function validarContato(){
+
+     objContato = {
+        name        : document.getElementById('name').value,
+        lastname      : document.getElementById('lastname').value,
+        email      : document.getElementById('email').value,
+        phone         : document.getElementById('phone').value
+        
+    };
+
+
+     if( objContato.name.trim().length == 0 ){
+        return false;
+    } else if( objContato.lastname.trim().length == 0 ){
+        return false;
+    } else if ( objContato.email.trim().length == 0  ){
+        return false;
+    } else if ( objContato.phone.trim().length == 0  ){
+        return false;
+    } else {
+       
+        dadosCliente.contato = objContato;
+
+        
+
+   
+        return true;
+    }
+
+   
 
 }
 
